@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title> Employees </title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3> Employees Table</h3>
+        <hr>
+        <!--Add a button-->
+        <a th:href="@{/employees/showFormAdd}"
+           class="btn btn-primary btn-sm mb-3">
+            Add Employee
+        </a>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th> First Name </th>
+                <th> last Name </th>
+                <th> Email </th>
+                <th> Action </th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each = "temp : ${modelemployee}">
+
+                    <td th:text = "${temp.firstName}"></td>
+                    <td th:text = "${temp.lastName}"></td>
+                    <td th:text = "${temp.email}"></td>
+
+                    <td>
+                        <!-- Add update button-->
+                        <a th:href="@{/employees/showFormUpdate (employeeId=${temp.id})}"
+                           class="btn btn-info">
+                            Update
+                        </a>
+
+                        <!-- Add delete button-->
+                        <a th:href="@{/employees/delete (employeeId=${temp.id})}"
+                           class="btn btn-danger" onclick="if(!(confirm('Are you sure you want to detete ?'))) return false">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
