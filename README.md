@@ -8,11 +8,9 @@ This project focuses on managing an employee database through a user-friendly in
  * Add new employees to the database.
  * Update existing employee information.
  * Delete employees from the database. <br>
-
    
 The project also incorporates cloud deployment using Alibaba Cloud. Infrastructure is provisioned and managed using Terraform, enabling scalable and efficient deployment of the application.
- 
- 
+  
 <br>
 
 ## Usages
@@ -109,12 +107,50 @@ The project also incorporates cloud deployment using Alibaba Cloud. Infrastructu
 ### 3-Application.properties.yml
 
 ```
-server.port=8082
-spring.datasource.url = jdbc:mysql://localhost:3306/employee-directory?useSSL=false&serverTimezone=UTC
-spring.datasource.username=springemployee
-spring.datasource.password= springemployee
+spring.datasource.url=jdbc:mysql://mydb:3306/demo
+spring.datasource.username=demouser
+spring.datasource.password=demopass
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=update  
 
  ```
+### 4- Dockerfile
+```
+FROM  openjdk:17
+WORKDIR /
+ADD target/spring-boot-thymeleaf-crud-db-project-0.0.1-SNAPSHOT.jar /
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/spring-boot-thymeleaf-crud-db-project-0.0.1-SNAPSHOT.jar"]
+
+```
+### 5- Docker-compose.yml
+```
+version: "3"
+services:
+  server:
+    container_name: app-container
+    image: app-image
+    build: .
+    restart: always
+    ports:
+      - 9091:8080
+    depends_on: 
+      - mydb
+
+  mydb:
+    container_name: mydb
+    platform: linux/arm64/v8
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3313:3306
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_USER: demouser
+      MYSQL_PASSWORD: demopass
+      MYSQL_ROOT_PASSWORD: demopass
+```
 
 ## Let's Start :mechanical_arm:
 ### • Display Empoyees Table
@@ -145,4 +181,4 @@ spring.datasource.password= springemployee
 ---
 
 ### Good Luck <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px"> 
-# project-deploy
+
