@@ -7,7 +7,9 @@ This project focuses on managing an employee database through a user-friendly in
  * Display a list of employees.
  * Add new employees to the database.
  * Update existing employee information.
- * Delete employees from the database. <br> 
+ * Delete employees from the database. <br>
+
+   
 The project also incorporates cloud deployment using Alibaba Cloud. Infrastructure is provisioned and managed using Terraform, enabling scalable and efficient deployment of the application.
  
  
