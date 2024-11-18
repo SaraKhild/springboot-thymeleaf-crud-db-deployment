@@ -1,9 +1,15 @@
-# SpringBoot Thymeleaf with CUDR Database Concept.
+# Spring Boot & Thymeleaf: CRUD Operations with Database Integration and Deployment on Alibaba Cloud
 
 <br>
 
 ## Overview
- The project is about the employee's table so it can display employees, add new employee, updates employee info and delete employee.
+This project focuses on managing an employee database through a user-friendly interface. It includes functionalities to:
+ * Display a list of employees.
+ * Add new employees to the database.
+ * Update existing employee information.
+ * Delete employees from the database. <br> <br>
+The project also incorporates cloud deployment using Alibaba Cloud. Infrastructure is provisioned and managed using Terraform, enabling scalable and efficient deployment of the application.
+ 
  
 <br>
 
@@ -12,14 +18,36 @@
 -  SpringJPA
 -  Thymeleaf
 -  MySQL
+-  Terraform
+-  Dockerfile
+-  Docekr Compose
   
 ## Architecture of the Project
 
- ### 1- src folders
+ ### 1- deployment folders
+   - provider.tf
+   - vpc.tf
+   - key.tf
+   - bastion-sg.t
+   - bastion.tf
+   - employee-sg.tf
+   - employee.tf
+   - employee.tpl
+   - mysql-sg.tf
+   - mysql.tf
+   - mysql.tpl
+   - load-balancer.tf
+     
+ ### 2- src folders
+ ####  2.1 main 
    - Controllers folder
    - Entities folder
    - DAO folder
    - Services folder
+#### 2.2 resources  
+##### 2.2.1 templates
+   - employee-form.html
+   - list-employees.html
 
  ### 2-Maven pom.xml
 <br>
